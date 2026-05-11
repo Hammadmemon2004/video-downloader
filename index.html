@@ -1,888 +1,455 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      Instagram Reel Downloader – Download IG Reels &amp; Videos Free
-    </title>
+    <title>NexDL — Download Videos &amp; Photos From Any Platform</title>
     <meta
       name="description"
-      content="Download Instagram Reels and videos free. Paste any IG reel or video link and save in HD. No app, no login. Fast Instagram Reel Downloader."
+      content="Paste any social URL — Instagram, TikTok, YouTube, Facebook, Pinterest, X, Vimeo — and download HD media instantly. No login."
     />
-    <meta
-      name="keywords"
-      content="Instagram reel downloader, IG reel downloader, download Instagram reels, download IG videos, Instagram video downloader, save Instagram reels"
-    />
-    <meta
-      property="og:title"
-      content="Instagram Reel Downloader – Download IG Reels &amp; Videos Free"
-    />
-    <meta
-      property="og:description"
-      content="Download Instagram Reels and videos free. Paste any IG reel or video link and save in HD. No app, no login."
-    />
-    <meta property="og:type" content="website" />
-    <link rel="canonical" href="https://your-domain.com/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=Outfit:wght@100..900&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
       rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
     <link rel="stylesheet" href="assets/index.css" />
   </head>
-  <body>
-    <div id="__next">
-      <main class="font-sans antialiased">
-        <div class="min-h-screen bg-content-bg">
-          <header class="bg-hero-gradient text-white">
-            <div
-              class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between flex-wrap gap-4"
-            >
-              <a class="flex items-center gap-2" href="./"
-                ><div
-                  class="inline-flex items-center justify-center rounded-full bg-white/20 text-white font-display font-bold leading-none w-8 h-8 w-9 h-9"
-                  aria-hidden="true"
-                >
-                  <span class="text-xs">IG</span>
-                </div>
-                <span class="font-display font-bold text-lg"
-                  >IG Downloader</span
-                ></a
+  <body class="text-body-secondary">
+    <!-- Sticky navbar -->
+    <nav
+      class="navbar navbar-expand-lg sticky-top nx-navbar py-3"
+      aria-label="Primary"
+    >
+      <div class="container">
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2 text-body-emphasis" href="#">
+          <span
+            class="d-inline-flex align-items-center justify-content-center rounded-3 nx-glass border border-secondary-subtle"
+            style="width: 2.25rem; height: 2.25rem"
+          >
+            <i class="bi bi-lightning-charge-fill nx-text-gradient"></i>
+          </span>
+          NexDL
+        </a>
+        <button
+          class="navbar-toggler border-secondary-subtle"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMain"
+          aria-controls="navMain"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMain">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link px-3 rounded-pill" href="#platforms">Platforms</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3 rounded-pill" href="#features">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3 rounded-pill" href="#preview">Preview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3 rounded-pill" href="#faq">FAQ</a>
+            </li>
+            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+              <button
+                type="button"
+                class="btn btn-outline-secondary rounded-pill px-3 d-inline-flex align-items-center gap-2"
+                id="themeToggle"
+                aria-label="Switch theme"
               >
-              <nav class="flex items-center gap-4 sm:gap-6 flex-wrap">
-                <a
-                  class="text-sm font-medium transition-colors text-white bg-white/20 px-3 py-1.5 rounded-lg"
-                  href="./#video"
-                  >Video</a
-                ><a
-                  class="text-sm font-medium transition-colors text-white/90 hover:text-white"
-                  href="./#photo"
-                  >Photo</a
-                ><a
-                  class="text-sm font-medium transition-colors text-white/90 hover:text-white"
-                  href="./#reels"
-                  >Reels</a
-                ><a
-                  class="text-sm font-medium transition-colors text-white/90 hover:text-white"
-                  href="./#story"
-                  >Story</a
-                ><a
-                  class="text-sm font-medium transition-colors text-white/90 hover:text-white"
-                  href="./#igtv"
-                  >IGTV</a
-                ><a
-                  class="text-sm font-medium transition-colors text-white/90 hover:text-white"
-                  href="./#carousel"
-                  >Carousel</a
-                ><a
-                  class="text-white/90 hover:text-white text-sm font-medium"
-                  href="./#faq"
-                  >FAQ</a
-                >
-                <div class="relative">
-                  <button
-                    type="button"
-                    class="flex items-center gap-1 text-white/90 hover:text-white text-sm font-medium"
-                  >
-                    EN
-                    <svg
-                      class="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M19 9l-7 7-7-7"
-                      ></path>
-                    </svg>
+                <i class="bi bi-sun-fill" aria-hidden="true"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="nx-hero-wrap position-relative py-5">
+      <div class="nx-blob" aria-hidden="true"></div>
+      <div class="nx-blob" aria-hidden="true"></div>
+      <div class="nx-blob" aria-hidden="true"></div>
+
+      <div
+        id="heroLoadingOverlay"
+        class="position-absolute top-0 start-0 w-100 h-100 d-none align-items-center justify-content-center nx-glass rounded-0"
+        style="z-index: 5"
+        aria-hidden="true"
+      >
+        <div class="text-center p-4">
+          <div class="nx-spinner-ring mx-auto mb-3" role="status"></div>
+          <p class="mb-0 small text-body-emphasis fw-medium">Resolving media…</p>
+        </div>
+      </div>
+
+      <div class="container position-relative" style="z-index: 1">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-10 col-xl-9">
+            <p class="small text-uppercase tracking-wide mb-2 opacity-75">
+              <span class="badge rounded-pill nx-glass border border-secondary-subtle px-3 py-2">
+                <i class="bi bi-stars me-1"></i> All-in-one social downloader
+              </span>
+            </p>
+            <h1 class="display-4 fw-bold text-body-emphasis lh-sm mb-3">
+              Download Videos &amp; Photos<br />
+              <span class="nx-text-gradient">From Any Platform</span>
+            </h1>
+            <p class="lead text-body-secondary mb-4 mb-lg-5 mx-auto" style="max-width: 36rem">
+              Instagram, TikTok, Facebook, Pinterest, X and more — paste a link,
+              pick quality, save in seconds.
+            </p>
+
+            <div class="nx-gradient-border mx-auto" style="max-width: 42rem">
+              <div class="nx-glass-inner p-3 p-md-4 text-start position-relative">
+                <label for="mediaUrl" class="form-label small text-body-secondary mb-2">Paste URL</label>
+                <div class="nx-input-wrap position-relative mb-2">
+                  <i id="platformIcon" class="nx-platform-icon bi bi-link-45deg text-secondary" aria-hidden="true"></i>
+                  <input
+                    id="mediaUrl"
+                    type="url"
+                    class="form-control form-control-lg nx-input-hero shadow-none"
+                    placeholder="https://…"
+                    autocomplete="off"
+                  />
+                </div>
+                <div id="urlLoadingBar" class="nx-loading-bar" aria-hidden="true"></div>
+                <div class="d-flex flex-column flex-sm-row gap-2 mt-3">
+                  <button type="button" class="btn btn-lg nx-btn-download text-white flex-grow-1 rounded-3 fw-semibold" id="heroDownloadBtn">
+                    <i class="bi bi-download me-2"></i> Download
+                  </button>
+                  <button type="button" class="btn btn-lg btn-outline-secondary rounded-3 px-4" id="pasteUrlBtn" title="Paste from clipboard">
+                    <i class="bi bi-clipboard"></i>
                   </button>
                 </div>
-              </nav>
+                <p class="small text-body-secondary mt-3 mb-0 text-center text-sm-start">
+                  <i class="bi bi-shield-check text-success me-1"></i>
+                  No account required · Encrypted session
+                </p>
+              </div>
             </div>
-          </header>
-          <section class="bg-hero-gradient text-white pb-12 sm:pb-16">
-            <div class="max-w-3xl mx-auto px-4 pt-8 sm:pt-12 text-center">
-              <h1
-                class="font-display text-3xl sm:text-4xl md:text-5xl font-bold"
-              >
-                Instagram Downloader
-              </h1>
-              <p class="mt-2 text-white/90 text-base sm:text-lg">
-                Download Instagram Videos, Photos, Reels, IGTV &amp; carousel.
-              </p>
-              <form class="mt-8">
-                <label for="instagram-url" class="sr-only"
-                  >Insert Instagram link here</label
-                >
-                <div
-                  class="flex flex-col sm:flex-row gap-2 bg-white rounded-xl p-2 shadow-lg"
-                >
-                  <input
-                    id="instagram-url"
-                    type="url"
-                    placeholder="https://www.instagram.com/reel/..."
-                    class="flex-1 min-w-0 px-4 py-3.5 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-accent-400 border border-slate-200"
-                    required=""
-                    value=""
-                  />
-                  <div class="flex gap-2">
-                    <button
-                      type="button"
-                      class="px-4 py-3.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 flex items-center gap-2 font-medium transition-colors"
-                    >
-                      <svg
-                        class="w-5 h-5 text-blue-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                        ></path></svg
-                      >Paste</button
-                    ><button
-                      type="submit"
-                      class="px-6 py-3.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold flex items-center gap-2 disabled:opacity-60 transition-colors"
-                    >
-                      <svg
-                        class="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                        ></path></svg
-                      >Download
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Supported platforms -->
+    <section id="platforms" class="py-5 border-top border-secondary-subtle">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="h3 fw-bold text-body-emphasis mb-2">Supported Platforms</h2>
+          <p class="text-body-secondary mb-0">One workflow for every major network.</p>
+        </div>
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 g-3 g-lg-4 justify-content-center">
+          <div class="col">
+            <div class="nx-glass nx-card-hover rounded-4 p-4 text-center h-100 border border-secondary-subtle">
+              <i class="bi bi-youtube display-5 text-danger d-block mb-2"></i>
+              <span class="fw-semibold text-body-emphasis small">YouTube</span>
+            </div>
+          </div>
+          <div class="col">
+            <div class="nx-glass nx-card-hover rounded-4 p-4 text-center h-100 border border-secondary-subtle">
+              <i class="bi bi-instagram display-5 text-warning d-block mb-2"></i>
+              <span class="fw-semibold text-body-emphasis small">Instagram</span>
+            </div>
+          </div>
+          <div class="col">
+            <div class="nx-glass nx-card-hover rounded-4 p-4 text-center h-100 border border-secondary-subtle">
+              <i class="bi bi-tiktok display-5 d-block mb-2"></i>
+              <span class="fw-semibold text-body-emphasis small">TikTok</span>
+            </div>
+          </div>
+          <div class="col">
+            <div class="nx-glass nx-card-hover rounded-4 p-4 text-center h-100 border border-secondary-subtle">
+              <i class="bi bi-facebook display-5 text-primary d-block mb-2"></i>
+              <span class="fw-semibold text-body-emphasis small">Facebook</span>
+            </div>
+          </div>
+          <div class="col">
+            <div class="nx-glass nx-card-hover rounded-4 p-4 text-center h-100 border border-secondary-subtle">
+              <i class="bi bi-pinterest display-5 text-danger d-block mb-2"></i>
+              <span class="fw-semibold text-body-emphasis small">Pinterest</span>
+            </div>
+          </div>
+          <div class="col">
+            <div class="nx-glass nx-card-hover rounded-4 p-4 text-center h-100 border border-secondary-subtle">
+              <i class="bi bi-twitter-x display-5 d-block mb-2"></i>
+              <span class="fw-semibold text-body-emphasis small">X</span>
+            </div>
+          </div>
+          <div class="col">
+            <div class="nx-glass nx-card-hover rounded-4 p-4 text-center h-100 border border-secondary-subtle">
+              <i class="bi bi-camera-reels display-5 text-info d-block mb-2"></i>
+              <span class="fw-semibold text-body-emphasis small">Vimeo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="h3 fw-bold text-body-emphasis mb-2">Built for speed &amp; clarity</h2>
+          <p class="text-body-secondary mb-0">Everything you expect from a premium downloader.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="nx-glass nx-card-hover rounded-4 p-4 h-100 border border-secondary-subtle">
+              <div class="rounded-3 bg-primary bg-opacity-10 text-primary d-inline-flex p-3 mb-3">
+                <i class="bi bi-hd display-6"></i>
+              </div>
+              <h3 class="h6 fw-bold text-body-emphasis">HD Downloads</h3>
+              <p class="small mb-0 text-body-secondary">Up to source resolution when the host allows it.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="nx-glass nx-card-hover rounded-4 p-4 h-100 border border-secondary-subtle">
+              <div class="rounded-3 bg-info bg-opacity-10 text-info d-inline-flex p-3 mb-3">
+                <i class="bi bi-lightning-charge display-6"></i>
+              </div>
+              <h3 class="h6 fw-bold text-body-emphasis">Ultra Fast</h3>
+              <p class="small mb-0 text-body-secondary">Edge-cached pipelines for minimal wait time.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="nx-glass nx-card-hover rounded-4 p-4 h-100 border border-secondary-subtle">
+              <div class="rounded-3 bg-success bg-opacity-10 text-success d-inline-flex p-3 mb-3">
+                <i class="bi bi-person-x display-6"></i>
+              </div>
+              <h3 class="h6 fw-bold text-body-emphasis">No Login Required</h3>
+              <p class="small mb-0 text-body-secondary">Paste the public link — we never ask for passwords.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="nx-glass nx-card-hover rounded-4 p-4 h-100 border border-secondary-subtle">
+              <div class="rounded-3 bg-warning bg-opacity-10 text-warning d-inline-flex p-3 mb-3">
+                <i class="bi bi-lock display-6"></i>
+              </div>
+              <h3 class="h6 fw-bold text-body-emphasis">Secure Downloads</h3>
+              <p class="small mb-0 text-body-secondary">HTTPS-only transfers; links expire after fetch.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="nx-glass nx-card-hover rounded-4 p-4 h-100 border border-secondary-subtle">
+              <div class="rounded-3 bg-danger bg-opacity-10 text-danger d-inline-flex p-3 mb-3">
+                <i class="bi bi-file-earmark-play display-6"></i>
+              </div>
+              <h3 class="h6 fw-bold text-body-emphasis">Multi Format Support</h3>
+              <p class="small mb-0 text-body-secondary">MP4, WEBM, JPEG — pick what your device prefers.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="nx-glass nx-card-hover rounded-4 p-4 h-100 border border-secondary-subtle">
+              <div class="rounded-3 nx-glass border border-secondary-subtle d-inline-flex p-3 mb-3 nx-text-gradient">
+                <i class="bi bi-collection-play display-6"></i>
+              </div>
+              <h3 class="h6 fw-bold text-body-emphasis">Story / Reel Support</h3>
+              <p class="small mb-0 text-body-secondary">Vertical clips and ephemeral-style posts included.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Preview card -->
+    <section id="preview" class="py-5 border-top border-secondary-subtle">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="h3 fw-bold text-body-emphasis mb-2">Preview before you save</h2>
+          <p class="text-body-secondary mb-0">See metadata and choose quality like a native app.</p>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="nx-gradient-border">
+              <div class="nx-glass-inner p-4 p-md-5">
+                <div class="row g-4 align-items-center">
+                  <div class="col-md-5">
+                    <div class="ratio ratio-9x16 rounded-4 overflow-hidden nx-thumb-shimmer border border-secondary-subtle shadow">
+                      <div class="d-flex align-items-center justify-content-center bg-dark bg-opacity-25">
+                        <i class="bi bi-play-circle display-3 text-white opacity-75"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-7 text-md-start text-center">
+                    <span class="badge rounded-pill nx-glass border border-secondary-subtle mb-2">Sample</span>
+                    <h3 class="h5 fw-bold text-body-emphasis mb-2">Neon skyline loop — @creator</h3>
+                    <p class="small text-body-secondary mb-3">1080×1920 · 12s · MP4</p>
+                    <label class="form-label small text-body-secondary" for="qualitySelect">Quality</label>
+                    <select id="qualitySelect" class="form-select form-select-lg mb-3 rounded-3 border-secondary-subtle bg-body-secondary">
+                      <option>1080p HD</option>
+                      <option>720p</option>
+                      <option>480p</option>
+                      <option>Audio only</option>
+                    </select>
+                    <button type="button" class="btn btn-lg nx-btn-download text-white rounded-3 w-100 w-md-auto px-5 fw-semibold">
+                      <i class="bi bi-download me-2"></i> Download now
                     </button>
                   </div>
                 </div>
-              </form>
-              <div class="mt-10 flex justify-center">
-                <div
-                  class="inline-flex items-center justify-center rounded-full bg-white/20 text-white font-display font-bold leading-none w-24 h-24"
-                  aria-hidden="true"
-                >
-                  <span class="text-2xl">IG</span>
-                </div>
               </div>
             </div>
-          </section>
-          <section class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-            <div
-              class="bg-white rounded-2xl shadow-card p-8 sm:p-10 flex flex-col md:flex-row items-center gap-8"
-            >
-              <div class="flex-1">
-                <div class="flex items-center gap-3 mb-4">
-                  <div
-                    class="inline-flex items-center justify-center rounded-full bg-white/20 text-white font-display font-bold leading-none w-12 h-12 !bg-hero-gradient !text-white w-14 h-14"
-                    aria-hidden="true"
-                  >
-                    <span class="text-base">IG</span>
-                  </div>
-                  <h2
-                    class="font-display text-2xl sm:text-3xl font-bold text-slate-800"
-                  >
-                    Instagram Videos and Photos Download
-                  </h2>
-                </div>
-                <p class="text-slate-600 leading-relaxed">
-                  This is an online web tool to download Instagram videos,
-                  photos, reels, IGTV, and carousel posts. Paste a public post
-                  link above and get your file in the quality you want—no app or
-                  login required.
-                </p>
-              </div>
-              <div
-                class="w-48 h-48 rounded-2xl bg-gradient-to-br from-accent-200 to-brand-pink/30 flex items-center justify-center flex-shrink-0"
-              >
-                <svg
-                  class="w-20 h-20 text-accent-500"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"
-                  ></path>
-                </svg>
-              </div>
-            </div>
-          </section>
-          <section class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-            <h2
-              class="font-display text-2xl sm:text-3xl font-bold text-slate-800 text-center mb-10"
-            >
-              How to download from Instagram?
-            </h2>
-            <div class="grid md:grid-cols-3 gap-6">
-              <div
-                class="bg-white rounded-xl shadow-card p-6 border border-slate-100"
-              >
-                <div
-                  class="w-12 h-12 rounded-xl bg-hero-gradient flex items-center justify-center text-white mb-4"
-                >
-                  <svg
-                    class="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                    ></path>
-                  </svg>
-                </div>
-                <h3 class="font-display font-semibold text-slate-800 text-lg">
-                  Copy the URL
-                </h3>
-                <p class="mt-2 text-slate-600 text-sm leading-relaxed">
-                  Open the Instagram app or website, then copy the URL of the
-                  photo, video, reels, carousel, or IGTV.
-                </p>
-              </div>
-              <div
-                class="bg-white rounded-xl shadow-card p-6 border border-slate-100"
-              >
-                <div
-                  class="w-12 h-12 rounded-xl bg-hero-gradient flex items-center justify-center text-white mb-4"
-                >
-                  <svg
-                    class="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
-                    ></path>
-                  </svg>
-                </div>
-                <h3 class="font-display font-semibold text-slate-800 text-lg">
-                  Paste the link
-                </h3>
-                <p class="mt-2 text-slate-600 text-sm leading-relaxed">
-                  Return to this page, paste the link into the input field and
-                  click the Download button.
-                </p>
-              </div>
-              <div
-                class="bg-white rounded-xl shadow-card p-6 border border-slate-100"
-              >
-                <div
-                  class="w-12 h-12 rounded-xl bg-hero-gradient flex items-center justify-center text-white mb-4"
-                >
-                  <svg
-                    class="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                    ></path>
-                  </svg>
-                </div>
-                <h3 class="font-display font-semibold text-slate-800 text-lg">
-                  Download
-                </h3>
-                <p class="mt-2 text-slate-600 text-sm leading-relaxed">
-                  You’ll get results with several quality options. Download the
-                  one that fits your needs.
-                </p>
-              </div>
-            </div>
-          </section>
-          <section class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-            <h2
-              class="font-display text-2xl sm:text-3xl font-bold text-slate-800 text-center"
-            >
-              Choose IG Downloader for Instagram
-            </h2>
-            <p class="mt-2 text-slate-600 text-center max-w-2xl mx-auto">
-              Quality and ease of use in one place. Download what you need in a
-              few clicks.
-            </p>
-            <div class="mt-10 grid sm:grid-cols-2 gap-6">
-              <div class="bg-white rounded-xl shadow-card p-6 flex gap-4">
-                <div
-                  class="w-12 h-12 rounded-xl bg-accent-100 text-accent-600 flex items-center justify-center flex-shrink-0"
-                >
-                  <svg
-                    class="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                    ></path>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-display font-semibold text-slate-800">
-                    Fast download
-                  </h3>
-                  <p class="mt-1 text-slate-600 text-sm leading-relaxed">
-                    Latest download speeds so you get your content quickly.
-                  </p>
-                </div>
-              </div>
-              <div class="bg-white rounded-xl shadow-card p-6 flex gap-4">
-                <div
-                  class="w-12 h-12 rounded-xl bg-accent-100 text-accent-600 flex items-center justify-center flex-shrink-0"
-                >
-                  <svg
-                    class="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    ></path>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-display font-semibold text-slate-800">
-                    Support for all devices
-                  </h3>
-                  <p class="mt-1 text-slate-600 text-sm leading-relaxed">
-                    Works on mobile, tablet, or desktop.
-                  </p>
-                </div>
-              </div>
-              <div class="bg-white rounded-xl shadow-card p-6 flex gap-4">
-                <div
-                  class="w-12 h-12 rounded-xl bg-accent-100 text-accent-600 flex items-center justify-center flex-shrink-0"
-                >
-                  <svg
-                    class="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
-                    ></path>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-display font-semibold text-slate-800">
-                    High quality
-                  </h3>
-                  <p class="mt-1 text-slate-600 text-sm leading-relaxed">
-                    Original quality without any loss.
-                  </p>
-                </div>
-              </div>
-              <div class="bg-white rounded-xl shadow-card p-6 flex gap-4">
-                <div
-                  class="w-12 h-12 rounded-xl bg-accent-100 text-accent-600 flex items-center justify-center flex-shrink-0"
-                >
-                  <svg
-                    class="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                    ></path>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="font-display font-semibold text-slate-800">
-                    Security
-                  </h3>
-                  <p class="mt-1 text-slate-600 text-sm leading-relaxed">
-                    Your privacy matters. We process downloads securely.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-          <section class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-            <h2
-              class="font-display text-2xl sm:text-3xl font-bold text-slate-800 text-center"
-            >
-              Features
-            </h2>
-            <p class="mt-2 text-slate-600 text-center max-w-2xl mx-auto">
-              We support a variety of Instagram content types. Paste the link
-              and download.
-            </p>
-            <div class="mt-10 space-y-6">
-              <div
-                id="video"
-                class="bg-white rounded-xl shadow-card overflow-hidden flex flex-col md:flex-row"
-              >
-                <div class="md:w-2/3 p-6 sm:p-8">
-                  <h3 class="font-display font-semibold text-xl text-slate-800">
-                    Video Downloader
-                  </h3>
-                  <p class="mt-2 text-slate-600 text-sm leading-relaxed">
-                    Download Instagram videos in multiple qualities. Paste the
-                    post link and choose your format.
-                  </p>
-                </div>
-                <div
-                  class="md:w-1/3 h-40 md:h-auto min-h-[160px] bg-gradient-to-br from-slate-100 to-accent-100 flex items-center justify-center"
-                >
-                  <div
-                    class="w-20 h-20 rounded-xl bg-white/80 flex items-center justify-center text-accent-500"
-                  >
-                    <svg
-                      class="w-10 h-10"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div
-                id="photo"
-                class="bg-white rounded-xl shadow-card overflow-hidden flex flex-col md:flex-row"
-              >
-                <div class="md:w-2/3 p-6 sm:p-8">
-                  <h3 class="font-display font-semibold text-xl text-slate-800">
-                    Photos Downloader
-                  </h3>
-                  <p class="mt-2 text-slate-600 text-sm leading-relaxed">
-                    Save Instagram photos in full resolution. Works with single
-                    posts and carousels.
-                  </p>
-                </div>
-                <div
-                  class="md:w-1/3 h-40 md:h-auto min-h-[160px] bg-gradient-to-br from-slate-100 to-accent-100 flex items-center justify-center"
-                >
-                  <div
-                    class="w-20 h-20 rounded-xl bg-white/80 flex items-center justify-center text-accent-500"
-                  >
-                    <svg
-                      class="w-10 h-10"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div
-                id="reels"
-                class="bg-white rounded-xl shadow-card overflow-hidden flex flex-col md:flex-row"
-              >
-                <div class="md:w-2/3 p-6 sm:p-8">
-                  <h3 class="font-display font-semibold text-xl text-slate-800">
-                    Reels Downloader
-                  </h3>
-                  <p class="mt-2 text-slate-600 text-sm leading-relaxed">
-                    Download Instagram Reels in HD. Save your favorite
-                    short-form videos.
-                  </p>
-                </div>
-                <div
-                  class="md:w-1/3 h-40 md:h-auto min-h-[160px] bg-gradient-to-br from-slate-100 to-accent-100 flex items-center justify-center"
-                >
-                  <div
-                    class="w-20 h-20 rounded-xl bg-white/80 flex items-center justify-center text-accent-500"
-                  >
-                    <svg
-                      class="w-10 h-10"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div
-                id="igtv"
-                class="bg-white rounded-xl shadow-card overflow-hidden flex flex-col md:flex-row"
-              >
-                <div class="md:w-2/3 p-6 sm:p-8">
-                  <h3 class="font-display font-semibold text-xl text-slate-800">
-                    IGTV Downloader
-                  </h3>
-                  <p class="mt-2 text-slate-600 text-sm leading-relaxed">
-                    Download IGTV and long-form videos from Instagram.
-                  </p>
-                </div>
-                <div
-                  class="md:w-1/3 h-40 md:h-auto min-h-[160px] bg-gradient-to-br from-slate-100 to-accent-100 flex items-center justify-center"
-                >
-                  <div
-                    class="w-20 h-20 rounded-xl bg-white/80 flex items-center justify-center text-accent-500"
-                  >
-                    <svg
-                      class="w-10 h-10"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div
-                id="carousel"
-                class="bg-white rounded-xl shadow-card overflow-hidden flex flex-col md:flex-row"
-              >
-                <div class="md:w-2/3 p-6 sm:p-8">
-                  <h3 class="font-display font-semibold text-xl text-slate-800">
-                    Carousel / Album Downloader
-                  </h3>
-                  <p class="mt-2 text-slate-600 text-sm leading-relaxed">
-                    Download all photos and videos from Instagram carousel posts
-                    at once.
-                  </p>
-                </div>
-                <div
-                  class="md:w-1/3 h-40 md:h-auto min-h-[160px] bg-gradient-to-br from-slate-100 to-accent-100 flex items-center justify-center"
-                >
-                  <div
-                    class="w-20 h-20 rounded-xl bg-white/80 flex items-center justify-center text-accent-500"
-                  >
-                    <svg
-                      class="w-10 h-10"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <section id="faq" class="max-w-3xl mx-auto px-4 py-12 sm:py-16">
-            <h2
-              class="font-display text-2xl sm:text-3xl font-bold text-slate-800 text-center"
-            >
-              Frequently asked questions (FAQ)
-            </h2>
-            <p class="mt-2 text-slate-600 text-center text-sm">
-              Common questions and answers. Contact us if you need more help.
-            </p>
-            <div class="mt-8 space-y-2">
-              <div
-                class="bg-white rounded-xl shadow-card border border-slate-100 overflow-hidden"
-              >
-                <button
-                  type="button"
-                  class="w-full flex items-center justify-between gap-4 p-4 sm:p-5 text-left hover:bg-slate-50/50 transition-colors"
-                >
-                  <span class="font-semibold text-slate-800"
-                    >What exactly is this tool?</span
-                  ><svg
-                    class="w-5 h-5 text-slate-400 flex-shrink-0 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    ></path>
-                  </svg>
-                </button>
-              </div>
-              <div
-                class="bg-white rounded-xl shadow-card border border-slate-100 overflow-hidden"
-              >
-                <button
-                  type="button"
-                  class="w-full flex items-center justify-between gap-4 p-4 sm:p-5 text-left hover:bg-slate-50/50 transition-colors"
-                >
-                  <span class="font-semibold text-slate-800"
-                    >Is downloading from Instagram legal?</span
-                  ><svg
-                    class="w-5 h-5 text-slate-400 flex-shrink-0 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    ></path>
-                  </svg>
-                </button>
-              </div>
-              <div
-                class="bg-white rounded-xl shadow-card border border-slate-100 overflow-hidden"
-              >
-                <button
-                  type="button"
-                  class="w-full flex items-center justify-between gap-4 p-4 sm:p-5 text-left hover:bg-slate-50/50 transition-colors"
-                >
-                  <span class="font-semibold text-slate-800"
-                    >What formats and quality do you offer?</span
-                  ><svg
-                    class="w-5 h-5 text-slate-400 flex-shrink-0 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    ></path>
-                  </svg>
-                </button>
-              </div>
-              <div
-                class="bg-white rounded-xl shadow-card border border-slate-100 overflow-hidden"
-              >
-                <button
-                  type="button"
-                  class="w-full flex items-center justify-between gap-4 p-4 sm:p-5 text-left hover:bg-slate-50/50 transition-colors"
-                >
-                  <span class="font-semibold text-slate-800"
-                    >Do I need to log in or create an account?</span
-                  ><svg
-                    class="w-5 h-5 text-slate-400 flex-shrink-0 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    ></path>
-                  </svg>
-                </button>
-              </div>
-              <div
-                class="bg-white rounded-xl shadow-card border border-slate-100 overflow-hidden"
-              >
-                <button
-                  type="button"
-                  class="w-full flex items-center justify-between gap-4 p-4 sm:p-5 text-left hover:bg-slate-50/50 transition-colors"
-                >
-                  <span class="font-semibold text-slate-800"
-                    >Why didn’t my download work?</span
-                  ><svg
-                    class="w-5 h-5 text-slate-400 flex-shrink-0 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    ></path>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </section>
-          <section class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-            <h2
-              class="font-display text-2xl font-bold text-slate-800 text-center mb-6"
-            >
-              Discover more
-            </h2>
-            <div class="flex flex-wrap justify-center gap-3 text-sm">
-              <a
-                href="./#igtv"
-                class="px-4 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
-                >IGTV content access</a
-              ><a
-                href="./#video"
-                class="px-4 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
-                >Videos</a
-              ><a
-                href="./#"
-                class="px-4 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
-                >Video production services</a
-              >
-            </div>
-          </section>
-          <section class="max-w-6xl mx-auto px-4 py-8">
-            <div
-              class="bg-slate-100 rounded-xl border border-slate-200 border-dashed p-8 text-center text-slate-500 text-sm"
-            >
-              <p class="font-medium">Advertisement</p>
-              <p class="mt-1">
-                Your ad or partner link could appear here (e.g. Influencer
-                marketing courses, Mobile download app).
-              </p>
-            </div>
-          </section>
-          <footer class="bg-footer text-white pt-12 pb-8">
-            <div class="max-w-6xl mx-auto px-4">
-              <div class="flex flex-col items-center text-center mb-8">
-                <a class="flex items-center gap-2 mb-4" href="./"
-                  ><div
-                    class="inline-flex items-center justify-center rounded-full bg-white/20 text-white font-display font-bold leading-none w-8 h-8 !bg-white/20 w-10 h-10"
-                    aria-hidden="true"
-                  >
-                    <span class="text-xs">IG</span>
-                  </div>
-                  <span class="font-display font-bold text-lg"
-                    >IG Downloader</span
-                  ></a
-                >
-                <nav
-                  class="flex flex-wrap justify-center gap-4 text-sm text-white/80"
-                >
-                  <a class="hover:text-white" href="./#video">Video</a
-                  ><a class="hover:text-white" href="./#photo">Photo</a
-                  ><a class="hover:text-white" href="./#reels">Reels</a
-                  ><a class="hover:text-white" href="./#story">Story</a
-                  ><a class="hover:text-white" href="./#igtv">IGTV</a
-                  ><a class="hover:text-white" href="./#carousel">Carousel</a
-                  ><a class="hover:text-white" href="./#faq">Viewer</a>
-                </nav>
-              </div>
-              <div
-                class="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm text-white/70 mb-4"
-              >
-                <a class="hover:text-white" href="./about"
-                  >About IG Downloader</a
-                ><a class="hover:text-white" href="./contact">Contact</a
-                ><a class="hover:text-white" href="./privacy">Privacy Policy</a
-                ><a class="hover:text-white" href="./terms"
-                  >Terms &amp; Conditions</a
-                >
-              </div>
-              <div
-                class="flex flex-wrap justify-center gap-4 text-sm text-white/60 mb-6"
-              >
-                <span class="font-medium text-white/80">Discover more:</span
-                ><a href="./#" class="hover:text-white">Background Remover</a
-                ><a href="./#" class="hover:text-white"
-                  >Pinterest Video Downloader</a
-                ><a href="./#" class="hover:text-white">123Tik</a>
-              </div>
-              <p class="text-center text-white/80 text-sm mb-4">Follow us:</p>
-              <div class="flex justify-center gap-4 mb-6">
-                <a
-                  href="./#"
-                  class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20"
-                  aria-label="Instagram"
-                  ><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                      d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"
-                    ></path></svg></a
-                ><a
-                  href="./#"
-                  class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20"
-                  aria-label="Facebook"
-                  ><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                      d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                    ></path></svg></a
-                ><a
-                  href="./#"
-                  class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20"
-                  aria-label="YouTube"
-                  ><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                      d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
-                    ></path></svg></a
-                ><a
-                  href="./#"
-                  class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20"
-                  aria-label="Twitter"
-                  ><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                      d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-                    ></path></svg></a
-                ><a
-                  href="./#"
-                  class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20"
-                  aria-label="TikTok"
-                  ><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                      d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"
-                    ></path></svg
-                ></a>
-              </div>
-              <p class="text-center text-white/60 text-xs">
-                © 2020–2026 IG Downloader. All rights reserved. For educational
-                use only.
-              </p>
-            </div>
-          </footer>
+          </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-5">
+      <div class="container">
+        <div class="nx-glass rounded-4 border border-secondary-subtle p-4 p-lg-5">
+          <div class="row text-center g-4">
+            <div class="col-md-4">
+              <p class="display-5 fw-bold text-body-emphasis nx-stat-num nx-text-gradient mb-1">12.4M+</p>
+              <p class="small text-body-secondary mb-0">Downloads served</p>
+            </div>
+            <div class="col-md-4">
+              <p class="display-5 fw-bold text-body-emphasis nx-stat-num nx-text-gradient mb-1">890K</p>
+              <p class="small text-body-secondary mb-0">Active users / mo</p>
+            </div>
+            <div class="col-md-4">
+              <p class="display-5 fw-bold text-body-emphasis nx-stat-num nx-text-gradient mb-1">7+</p>
+              <p class="small text-body-secondary mb-0">Platforms supported</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-5 border-top border-secondary-subtle">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="h3 fw-bold text-body-emphasis mb-2">FAQ</h2>
+          <p class="text-body-secondary mb-0">Quick answers for a smooth experience.</p>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="accordion accordion-flush nx-glass rounded-4 border border-secondary-subtle overflow-hidden" id="faqAccordion">
+              <div class="accordion-item bg-transparent border-secondary-subtle">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed bg-transparent text-body-emphasis shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                    Is NexDL free to use?
+                  </button>
+                </h3>
+                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body text-body-secondary small">
+                    Yes. Paste a public link and download — no subscription required for standard use.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item bg-transparent border-secondary-subtle">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed bg-transparent text-body-emphasis shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                    Do you store my links or files?
+                  </button>
+                </h3>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body text-body-secondary small">
+                    We process links transiently to resolve media URLs. We do not build a personal library of your downloads.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item bg-transparent border-secondary-subtle">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed bg-transparent text-body-emphasis shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                    Why does quality vary by platform?
+                  </button>
+                </h3>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body text-body-secondary small">
+                    Each host exposes different streams. We list every option the source makes available to third-party tools.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item bg-transparent border-secondary-subtle">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed bg-transparent text-body-emphasis shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                    Can I download private or friends-only posts?
+                  </button>
+                </h3>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body text-body-secondary small">
+                    No. Only publicly accessible URLs work — respect creators’ privacy and platform terms.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-top border-secondary-subtle py-5 mt-2">
+      <div class="container">
+        <div class="row g-4 align-items-start">
+          <div class="col-lg-4">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <i class="bi bi-lightning-charge-fill nx-text-gradient fs-4"></i>
+              <span class="fw-bold text-body-emphasis fs-5">NexDL</span>
+            </div>
+            <p class="small text-body-secondary mb-0">
+              Futuristic all-in-one social downloader — minimal UI, maximum clarity.
+            </p>
+          </div>
+          <div class="col-6 col-lg-2">
+            <h4 class="small fw-bold text-body-emphasis text-uppercase mb-3">Product</h4>
+            <ul class="list-unstyled small mb-0">
+              <li class="mb-2"><a href="#platforms" class="link-secondary text-decoration-none">Platforms</a></li>
+              <li class="mb-2"><a href="#features" class="link-secondary text-decoration-none">Features</a></li>
+              <li><a href="#faq" class="link-secondary text-decoration-none">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-lg-2">
+            <h4 class="small fw-bold text-body-emphasis text-uppercase mb-3">Legal</h4>
+            <ul class="list-unstyled small mb-0">
+              <li class="mb-2"><a href="#" class="link-secondary text-decoration-none">Terms</a></li>
+              <li><a href="#" class="link-secondary text-decoration-none">Privacy</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 text-lg-end">
+            <p class="small text-body-secondary mb-2">Stay in the loop</p>
+            <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
+              <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill"><i class="bi bi-twitter-x"></i></a>
+              <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill"><i class="bi bi-github"></i></a>
+              <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill"><i class="bi bi-discord"></i></a>
+            </div>
+          </div>
+        </div>
+        <hr class="border-secondary-subtle my-4" />
+        <p class="small text-center text-body-secondary mb-0">
+          © <span id="y"></span> NexDL. Demo landing — connect your backend to go live.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/index.js"></script>
   </body>
 </html>
