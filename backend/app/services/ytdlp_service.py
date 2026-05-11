@@ -188,23 +188,23 @@ def _qualities_from_formats(
             QualityTier(
                 name="audio_best",
                 label=best_label,
-                format_id="bestaudio/best",
+                format_id=f"{NEXDL_MP3}:best",
                 max_height=None,
-                note="Highest bitrate stream",
+                note="Highest bitrate stream (MP3)",
             ),
             QualityTier(
                 name="audio_mid",
                 label="Medium (~160 kb/s cap)",
-                format_id="bestaudio[abr<=160]/bestaudio",
+                format_id=f"{NEXDL_MP3}:mid",
                 max_height=None,
-                note="Lower bitrate when available",
+                note="Lower bitrate when available (MP3)",
             ),
             QualityTier(
                 name="audio_low",
                 label="Smallest file",
-                format_id="worstaudio/worst",
+                format_id=f"{NEXDL_MP3}:low",
                 max_height=None,
-                note="Lowest bitrate",
+                note="Lowest bitrate (MP3)",
             ),
         ]
 
@@ -219,7 +219,14 @@ def _qualities_from_formats(
                 format_id="bestvideo+bestaudio/best",
                 max_height=None,
                 note="No discrete heights reported",
-            )
+            ),
+            QualityTier(
+                name="audio_mp3",
+                label="Best",
+                format_id=NEXDL_MP3,
+                max_height=None,
+                note="Audio only (MP3)",
+            ),
         ]
 
     out: list[QualityTier] = []
@@ -239,6 +246,15 @@ def _qualities_from_formats(
                 note=None,
             )
         )
+    out.append(
+        QualityTier(
+            name="audio_mp3",
+            label="Best",
+            format_id=NEXDL_MP3,
+            max_height=None,
+            note="Audio only (MP3)",
+        )
+    )
     return out
 
 
@@ -267,6 +283,27 @@ def _sanitize_format_id(raw: str) -> str:
     if re.search(r"[\r\n\x00]", s):
         raise AppError(ErrorCode.VALIDATION_ERROR, "Invalid format_id.", status_code=422)
     return s
+
+
+NEXDL_MP3 = "nexdl:mp3"
+
+
+def _nexdl_mp3_audio_selector(format_id: str) -> str | None:
+    """
+    Map internal MP3 tokens to yt-dlp audio-only format selectors.
+    FFmpegExtractAudio is applied in download_to_filepath.
+    """
+    if format_id == NEXDL_MP3:
+        return "bestaudio/best"
+    prefix = NEXDL_MP3 + ":"
+    if not format_id.startswith(prefix):
+        return None
+    key = format_id[len(prefix) :]
+    return {
+        "best": "bestaudio/best",
+        "mid": "bestaudio[abr<=160]/bestaudio",
+        "low": "worstaudio/worst",
+    }.get(key, "bestaudio/best")
 
 
 class YtDlpService:
@@ -354,11 +391,30 @@ class YtDlpService:
         outtmpl = os.path.join(tmp_root, base + ".%(ext)s")
 
         opts = _base_ydl_opts(self.settings)
-        opts["format"] = format_id
         opts["outtmpl"] = outtmpl
-        opts["merge_output_format"] = "mp4"
         opts["noplaylist"] = True
         opts["max_filesize"] = self.settings.max_download_bytes
+
+        mp3_audio_fmt = _nexdl_mp3_audio_selector(format_id)
+        if mp3_audio_fmt is not None:
+            if not _ffmpeg_exists():
+                raise AppError(
+                    ErrorCode.DOWNLOAD_FAILED,
+                    "MP3 downloads require ffmpeg on the server.",
+                    status_code=503,
+                    details={"hint": "Install ffmpeg and ensure it is on PATH."},
+                )
+            opts["format"] = mp3_audio_fmt
+            opts["postprocessors"] = [
+                {
+                    "key": "FFmpegExtractAudio",
+                    "preferredcodec": "mp3",
+                    "preferredquality": "192",
+                }
+            ]
+        else:
+            opts["format"] = format_id
+            opts["merge_output_format"] = "mp4"
 
         if _ffmpeg_exists():
             opts["ffmpeg_location"] = shutil.which("ffmpeg")

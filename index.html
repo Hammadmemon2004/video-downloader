@@ -158,11 +158,11 @@
                       <i class="bi bi-arrow-left me-1"></i> Download another file
                     </button>
                   </div>
-                  <div class="row g-4 align-items-center">
-                    <div class="col-md-5">
+                  <div class="row g-4 align-items-stretch nx-preview-layout">
+                    <div class="col-md-5 text-center text-md-start">
                       <div
                         id="previewMediaShell"
-                        class="nx-preview-media rounded-4 border border-secondary-subtle shadow-sm position-relative overflow-hidden"
+                        class="nx-preview-media rounded-4 border border-secondary-subtle shadow-sm position-relative overflow-hidden mx-auto mx-md-0"
                       >
                         <img id="previewThumb" class="nx-preview-img d-none" alt="" crossorigin="anonymous" />
                         <video
@@ -173,26 +173,24 @@
                           preload="metadata"
                         ></video>
                         <div id="previewThumbPh" class="nx-preview-ph d-flex align-items-center justify-content-center">
-                          <i class="bi bi-play-circle display-3 text-white opacity-75"></i>
+                          <i class="bi bi-play-circle display-3 nx-preview-ph-icon" aria-hidden="true"></i>
                         </div>
                       </div>
+                      <h3 id="previewTitle" class="h5 fw-bold text-body-emphasis mb-1 mt-3">—</h3>
+                      <p id="previewDuration" class="small text-body-secondary mb-0">—</p>
+                      <p id="previewSubmeta" class="small text-body-secondary mt-1 mb-0 d-none"></p>
                     </div>
-                    <div class="col-md-7 text-md-start text-center">
-                      <span id="previewBadge" class="nx-badge-platform small rounded-pill nx-glass border border-secondary-subtle px-3 py-2 mb-2">—</span>
-                      <h3 id="previewTitle" class="h5 fw-bold text-body-emphasis mb-2 mt-5">—</h3>
-                      <p id="previewMeta" class="small text-body-secondary mb-3">—</p>
-                      <label class="form-label small text-body-secondary" for="qualitySelect">Available formats</label>
-                      <select id="qualitySelect" class="form-select form-select-lg mb-3 rounded-3 border-secondary-subtle bg-body-secondary">
-                        <option value="">—</option>
-                      </select>
-                      <button type="button" id="previewDownloadBtn" class="btn btn-lg nx-btn-download text-white rounded-3 w-100 w-md-auto px-5 fw-semibold position-relative" disabled>
-                        <span class="preview-dl-label d-inline-flex align-items-center gap-2">
-                          <i class="bi bi-download"></i> Download now
-                        </span>
-                        <span class="preview-dl-spinner d-none position-absolute top-50 start-50 translate-middle" aria-hidden="true">
-                          <span class="nx-spinner-inline nx-spinner-inline--light"></span>
-                        </span>
-                      </button>
+                    <div class="col-md-7 text-md-start text-center d-flex flex-column">
+                      <span id="previewBadge" class="nx-badge-platform small rounded-pill nx-glass border border-secondary-subtle px-3 py-2 mb-3 align-self-center align-self-md-start">—</span>
+                      <div class="nx-format-panel flex-grow-1 d-flex flex-column rounded-3 border border-secondary-subtle overflow-hidden text-start">
+                        <div class="nx-format-panel-head border-bottom border-secondary-subtle">
+                          <div class="nx-format-panel-head-cell py-2 px-3 fw-semibold small text-body-emphasis text-start">Format</div>
+                          <div class="nx-format-panel-head-cell py-2 px-3 fw-semibold small text-body-emphasis border-start border-secondary-subtle text-start">
+                            Download
+                          </div>
+                        </div>
+                        <div id="formatOptionsBody" class="nx-format-options flex-grow-1"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -464,8 +462,8 @@
     ></script>
     <!-- FastAPI backend base URL (no trailing slash). Override per environment. -->
     <script>
-      window.NEXDL_API_BASE = "https://video-downloader-1u95.onrender.com";
-      // window.NEXDL_API_BASE = "http://127.0.0.1:8000";
+      // window.NEXDL_API_BASE = "https://video-downloader-1u95.onrender.com";
+      window.NEXDL_API_BASE = "http://127.0.0.1:8000";
     </script>
     <script src="assets/index.js"></script>
   </body>

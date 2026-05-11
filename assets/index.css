@@ -260,35 +260,43 @@ body {
   border-top-color: #fff;
 }
 
-/* Preview media (any aspect ratio) */
+/* Preview media — cover fills frame, shell stays transparent */
 .nx-preview-media {
-  min-height: 220px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
   max-height: min(56vh, 520px);
-  background: rgba(2, 6, 23, 0.65);
+  margin-left: auto;
+  margin-right: auto;
+  background: transparent;
 }
 
 .nx-preview-ph {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(145deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.85));
+  background: transparent;
+}
+
+.nx-preview-ph-icon {
+  color: var(--bs-secondary-color);
+  opacity: 0.5;
 }
 
 .nx-preview-img,
 .nx-preview-video {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 1;
   display: block;
-  margin: 0 auto;
-  max-width: 100%;
-  max-height: min(56vh, 520px);
-  width: auto;
-  height: auto;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  object-fit: cover;
+  object-position: center;
 }
 
 .nx-preview-video {
-  background: #000;
+  background: transparent;
 }
 
 @keyframes nx-spin {
@@ -325,4 +333,64 @@ body {
 [data-bs-theme="light"] .nx-thumb-shimmer {
   background: linear-gradient(110deg, #e2e8f0 0%, #f8fafc 45%, #e2e8f0 90%);
   background-size: 200% 100%;
+}
+
+/* Preview — format table: equal columns, left-aligned (header + rows aligned) */
+.nx-format-panel-head,
+.nx-format-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.nx-format-panel-head {
+  background: rgba(var(--bs-secondary-rgb), 0.2);
+}
+
+[data-bs-theme="light"] .nx-format-panel-head {
+  background: rgba(var(--bs-secondary-rgb), 0.12);
+}
+
+.nx-format-panel-head-cell {
+  text-align: start;
+}
+
+.nx-format-row {
+  gap: 0;
+  align-items: center;
+}
+
+.nx-format-row-left {
+  min-width: 0;
+  text-align: start;
+}
+
+.nx-format-ext {
+  font-weight: 400;
+}
+
+.nx-format-row-dl-cell {
+  min-width: 0;
+  text-align: start;
+}
+
+.nx-format-quality {
+  font-variant-numeric: tabular-nums;
+}
+
+.nx-preview-row-dl {
+  width: 100%;
+  font-weight: 600;
+  position: relative;
+}
+
+.nx-preview-row-dl:disabled {
+  opacity: 0.85;
+}
+
+.nx-preview-row-dl .nx-row-dl-spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

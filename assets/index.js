@@ -109,22 +109,23 @@
     }
   }
 
-  function setPreviewDownloading(on) {
-    var btn = document.getElementById("previewDownloadBtn");
-    if (!btn) return;
-    var sel = document.getElementById("qualitySelect");
-    var hasVal = !!(sel && sel.value);
-    var lab = btn.querySelector(".preview-dl-label");
-    var sp = btn.querySelector(".preview-dl-spinner");
-    if (on) {
-      btn.disabled = true;
-      if (lab) lab.classList.add("invisible");
-      if (sp) sp.classList.remove("d-none");
-      return;
+  function setPreviewDownloading(on, activeBtn) {
+    var body = document.getElementById("formatOptionsBody");
+    var buttons = body ? body.querySelectorAll(".nx-preview-row-dl") : [];
+    buttons.forEach(function (b) {
+      b.disabled = !!on;
+    });
+    if (activeBtn) {
+      var lab = activeBtn.querySelector(".nx-row-dl-label");
+      var sp = activeBtn.querySelector(".nx-row-dl-spinner");
+      if (on) {
+        if (lab) lab.classList.add("invisible");
+        if (sp) sp.classList.remove("d-none");
+      } else {
+        if (lab) lab.classList.remove("invisible");
+        if (sp) sp.classList.add("d-none");
+      }
     }
-    if (lab) lab.classList.remove("invisible");
-    if (sp) sp.classList.add("d-none");
-    btn.disabled = !hasVal;
   }
 
   function showPasteLayout() {
@@ -169,16 +170,19 @@
     var urlInput = document.getElementById("mediaUrl");
     if (urlInput) urlInput.value = "";
     clearPreviewMedia();
-    var sel = document.getElementById("qualitySelect");
-    if (sel) {
-      sel.innerHTML = "";
-      var o = document.createElement("option");
-      o.value = "";
-      o.textContent = "—";
-      sel.appendChild(o);
+    var body = document.getElementById("formatOptionsBody");
+    if (body) body.innerHTML = "";
+    var t = document.getElementById("previewTitle");
+    var d = document.getElementById("previewDuration");
+    var s = document.getElementById("previewSubmeta");
+    var b = document.getElementById("previewBadge");
+    if (t) t.textContent = "—";
+    if (d) d.textContent = "—";
+    if (s) {
+      s.textContent = "";
+      s.classList.add("d-none");
     }
-    var pbtn = document.getElementById("previewDownloadBtn");
-    if (pbtn) pbtn.disabled = true;
+    if (b) b.textContent = "—";
     showPasteLayout();
     document.getElementById("downloaderFlow")?.scrollIntoView({ behavior: "smooth", block: "start" });
     var pic = document.getElementById("platformIcon");
@@ -187,25 +191,113 @@
     }
   }
 
+  function rowFormatExt(q) {
+    var fid = q.format_id || "";
+    if (fid.indexOf("nexdl:mp3") === 0) return "MP3";
+    return "MP4";
+  }
+
+  function qualityCellText(q, mediaType) {
+    if (q.format_id && String(q.format_id).indexOf("nexdl:mp3") === 0) {
+      return "320";
+    }
+    if (mediaType === "audio") {
+      var lab = q.label || "";
+      var peak = /\(\s*~\s*(\d+)\s*kb\/s\s*peak\s*\)/i.exec(lab);
+      if (peak) return peak[1];
+      var kb = /(\d{2,4})\s*kb\/s/i.exec(lab);
+      if (kb) return kb[1];
+      var short = lab.replace(/^Best audio\s*/i, "").trim();
+      if (short.length > 18) return short.slice(0, 15) + "…";
+      return short || "—";
+    }
+    if (q.max_height != null && q.max_height > 0) return String(q.max_height);
+    var label = (q.label || "").trim();
+    var m = /^(\d{3,4})p?$/i.exec(label);
+    if (m) return m[1];
+    if (label.length <= 16) return label;
+    return label.slice(0, 13) + "…";
+  }
+
+  function appendFormatRow(body, formatId, extLabel, qualityText, dlLabel) {
+    var row = document.createElement("div");
+    row.className = "nx-format-row border-bottom border-secondary-subtle";
+
+    var left = document.createElement("div");
+    left.className =
+      "nx-format-row-left d-flex align-items-center justify-content-between py-2 px-3 gap-2";
+
+    var ext = document.createElement("span");
+    ext.className = "nx-format-ext small text-body-emphasis fw-normal";
+    ext.textContent = extLabel;
+
+    var qual = document.createElement("span");
+    qual.className =
+      "nx-format-quality text-body-secondary small text-end fw-normal flex-shrink-0";
+    qual.textContent = qualityText;
+
+    left.appendChild(ext);
+    left.appendChild(qual);
+
+    var right = document.createElement("div");
+    right.className =
+      "nx-format-row-dl-cell d-flex align-items-center justify-content-start border-start border-secondary-subtle py-2 px-3";
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className =
+      "btn btn-success btn-sm rounded-3 nx-preview-row-dl text-white w-100";
+    btn.setAttribute("data-format-id", formatId);
+
+    var lab = document.createElement("span");
+    lab.className = "nx-row-dl-label d-inline-flex align-items-center gap-1";
+    var ic = document.createElement("i");
+    ic.className = "bi bi-download";
+    ic.setAttribute("aria-hidden", "true");
+    lab.appendChild(ic);
+    lab.appendChild(document.createTextNode(" " + (dlLabel || "Download")));
+
+    var sp = document.createElement("span");
+    sp.className = "nx-row-dl-spinner d-none";
+    sp.setAttribute("aria-hidden", "true");
+    var spin = document.createElement("span");
+    spin.className = "nx-spinner-inline nx-spinner-inline--light";
+    sp.appendChild(spin);
+
+    btn.appendChild(lab);
+    btn.appendChild(sp);
+    right.appendChild(btn);
+    row.appendChild(left);
+    row.appendChild(right);
+    body.appendChild(row);
+  }
+
   function applyAnalyzeToPreview(data) {
     var titleEl = document.getElementById("previewTitle");
-    var metaEl = document.getElementById("previewMeta");
+    var durationEl = document.getElementById("previewDuration");
+    var submetaEl = document.getElementById("previewSubmeta");
     var badgeEl = document.getElementById("previewBadge");
-    var sel = document.getElementById("qualitySelect");
+    var body = document.getElementById("formatOptionsBody");
     var thumb = document.getElementById("previewThumb");
     var vid = document.getElementById("previewVideo");
     var ph = document.getElementById("previewThumbPh");
-    var dlBtn = document.getElementById("previewDownloadBtn");
+
+    var mediaType = data.media_type || "video";
 
     if (titleEl) titleEl.textContent = data.title || "Untitled";
     if (badgeEl) badgeEl.textContent = (data.platform || "media").toUpperCase();
 
     var mh = maxFormatHeight(data.formats);
-    var parts = [];
-    if (mh) parts.push("Up to " + mh + "p");
-    parts.push(formatDuration(data.duration));
-    parts.push((data.media_type || "video").toUpperCase());
-    if (metaEl) metaEl.textContent = parts.join(" · ");
+    if (durationEl) durationEl.textContent = formatDuration(data.duration);
+    if (submetaEl) {
+      if (mh && mediaType !== "audio") {
+        submetaEl.textContent = "Up to " + mh + "p";
+        submetaEl.classList.remove("d-none");
+      } else {
+        submetaEl.textContent = "";
+        submetaEl.classList.add("d-none");
+      }
+    }
 
     clearPreviewMedia();
 
@@ -237,24 +329,27 @@
       thumb.alt = data.title || "";
     }
 
-    if (sel) {
-      sel.innerHTML = "";
+    if (body) {
+      body.innerHTML = "";
       var qs = data.qualities || [];
       if (!qs.length) {
-        var ox = document.createElement("option");
-        ox.value = "";
-        ox.textContent = "No formats available";
-        sel.appendChild(ox);
-        if (dlBtn) dlBtn.disabled = true;
+        var empty = document.createElement("div");
+        empty.className = "small text-body-secondary py-3 px-3 mb-0";
+        empty.textContent = "No formats available";
+        body.appendChild(empty);
         return;
       }
       qs.forEach(function (q) {
-        var opt = document.createElement("option");
-        opt.value = q.format_id;
-        opt.textContent = q.label || q.name || q.format_id;
-        sel.appendChild(opt);
+        var fid = q.format_id;
+        if (!fid) return;
+        appendFormatRow(
+          body,
+          fid,
+          rowFormatExt(q),
+          qualityCellText(q, mediaType),
+          "Download"
+        );
       });
-      if (dlBtn) dlBtn.disabled = false;
     }
   }
 
@@ -398,27 +493,22 @@
       resetToAnotherFile();
     });
 
-    document.getElementById("qualitySelect")?.addEventListener("change", function () {
-      var sel = document.getElementById("qualitySelect");
-      var btn = document.getElementById("previewDownloadBtn");
-      if (btn && sel) btn.disabled = !sel.value;
-    });
-
-    document.getElementById("previewDownloadBtn")?.addEventListener("click", function () {
+    document.getElementById("formatOptionsBody")?.addEventListener("click", function (e) {
+      var btn = e.target.closest(".nx-preview-row-dl");
+      if (!btn || btn.disabled) return;
+      var fid = btn.getAttribute("data-format-id");
       hideAllErrors();
-      var sel = document.getElementById("qualitySelect");
-      var fid = sel && sel.value;
       if (!lastMediaUrl || !fid) {
         showApiError("Pick a format first.");
         return;
       }
-      setPreviewDownloading(true);
+      setPreviewDownloading(true, btn);
       downloadFile(lastMediaUrl, fid)
         .catch(function (err) {
           showApiError(err.message || "Download failed.");
         })
         .finally(function () {
-          setPreviewDownloading(false);
+          setPreviewDownloading(false, btn);
         });
     });
 
