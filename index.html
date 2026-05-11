@@ -62,7 +62,7 @@
               <a class="nav-link px-3 rounded-pill" href="#features">Features</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link px-3 rounded-pill" href="#preview">Preview</a>
+              <a class="nav-link px-3 rounded-pill" href="#downloaderFlow">Download</a>
             </li>
             <li class="nav-item">
               <a class="nav-link px-3 rounded-pill" href="#faq">FAQ</a>
@@ -82,67 +82,123 @@
       </div>
     </nav>
 
-    <!-- Hero -->
+    <!-- Hero + downloader (paste ↔ result swap) -->
     <header class="nx-hero-wrap position-relative py-5">
       <div class="nx-blob" aria-hidden="true"></div>
       <div class="nx-blob" aria-hidden="true"></div>
       <div class="nx-blob" aria-hidden="true"></div>
 
-      <div
-        id="heroLoadingOverlay"
-        class="position-absolute top-0 start-0 w-100 h-100 d-none align-items-center justify-content-center nx-glass rounded-0"
-        style="z-index: 5"
-        aria-hidden="true"
-      >
-        <div class="text-center p-4">
-          <div class="nx-spinner-ring mx-auto mb-3" role="status"></div>
-          <p class="mb-0 small text-body-emphasis fw-medium">Resolving media…</p>
-        </div>
-      </div>
-
-      <div class="container position-relative" style="z-index: 1">
+      <div class="container position-relative" style="z-index: 1" id="downloaderFlow">
         <div class="row justify-content-center text-center">
           <div class="col-lg-10 col-xl-9">
-            <p class="small text-uppercase tracking-wide mb-2 opacity-75">
-              <span class="badge rounded-pill nx-glass border border-secondary-subtle px-3 py-2">
-                <i class="bi bi-stars me-1"></i> All-in-one social downloader
-              </span>
-            </p>
-            <h1 class="display-4 fw-bold text-body-emphasis lh-sm mb-3">
-              Download Videos &amp; Photos<br />
-              <span class="nx-text-gradient">From Any Platform</span>
-            </h1>
-            <p class="lead text-body-secondary mb-4 mb-lg-5 mx-auto" style="max-width: 36rem">
-              Instagram, TikTok, Facebook, Pinterest, X and more — paste a link,
-              pick quality, save in seconds.
-            </p>
+            <div id="heroIntro">
+              <p class="small text-uppercase tracking-wide mb-2 opacity-75">
+                <span class="badge rounded-pill nx-glass border border-secondary-subtle px-3 py-2">
+                  <i class="bi bi-stars me-1"></i> All-in-one social downloader
+                </span>
+              </p>
+              <h1 class="display-4 fw-bold text-body-emphasis lh-sm mb-3">
+                Download Videos &amp; Photos<br />
+                <span class="nx-text-gradient">From Any Platform</span>
+              </h1>
+              <p class="lead text-body-secondary mb-4 mb-lg-4 mx-auto" style="max-width: 36rem">
+                Instagram, TikTok, Facebook, Pinterest, X and more — paste a link,
+                pick quality, save in seconds.
+              </p>
+            </div>
 
-            <div class="nx-gradient-border mx-auto" style="max-width: 42rem">
-              <div class="nx-glass-inner p-3 p-md-4 text-start position-relative">
-                <label for="mediaUrl" class="form-label small text-body-secondary mb-2">Paste URL</label>
-                <div class="nx-input-wrap position-relative mb-2">
-                  <i id="platformIcon" class="nx-platform-icon bi bi-link-45deg text-secondary" aria-hidden="true"></i>
-                  <input
-                    id="mediaUrl"
-                    type="url"
-                    class="form-control form-control-lg nx-input-hero shadow-none"
-                    placeholder="https://…"
-                    autocomplete="off"
-                  />
+            <!-- Paste URL (hidden when a result is shown) -->
+            <div id="heroPasteSection">
+              <div class="nx-gradient-border mx-auto" style="max-width: 42rem">
+                <div class="nx-glass-inner p-3 p-md-4 text-start position-relative">
+                  <div id="inputLineLoader" class="nx-input-line-loader d-none mb-2" aria-hidden="true">
+                    <span class="nx-spinner-inline" role="status"></span>
+                  </div>
+                  <label for="mediaUrl" class="form-label small text-body-secondary mb-2">Paste URL</label>
+                  <div class="nx-input-wrap position-relative mb-2">
+                    <i id="platformIcon" class="nx-platform-icon bi bi-link-45deg text-secondary" aria-hidden="true"></i>
+                    <input
+                      id="mediaUrl"
+                      type="url"
+                      class="form-control form-control-lg nx-input-hero shadow-none"
+                      placeholder="https://…"
+                      autocomplete="off"
+                    />
+                  </div>
+                  <div id="apiError" class="alert alert-danger py-2 px-3 small mt-2 d-none" role="alert"></div>
+                  <div class="d-flex flex-column flex-sm-row gap-2 mt-3">
+                    <button type="button" class="btn btn-lg nx-btn-download text-white flex-grow-1 rounded-3 fw-semibold position-relative" id="heroDownloadBtn">
+                      <span class="hero-btn-label d-inline-flex align-items-center justify-content-center gap-2">
+                        <i class="bi bi-download"></i> Download
+                      </span>
+                      <span class="hero-btn-spinner d-none position-absolute top-50 start-50 translate-middle" aria-hidden="true">
+                        <span class="nx-spinner-inline nx-spinner-inline--light"></span>
+                      </span>
+                    </button>
+                    <button type="button" class="btn btn-lg btn-outline-secondary rounded-3 px-4" id="pasteUrlBtn" title="Paste from clipboard">
+                      <i class="bi bi-clipboard"></i>
+                    </button>
+                  </div>
+                  <p class="small text-body-secondary mt-3 mb-0 text-center text-sm-start">
+                    <i class="bi bi-shield-check text-success me-1"></i>
+                    No account required · Encrypted session
+                  </p>
                 </div>
-                <div id="urlLoadingBar" class="nx-loading-bar" aria-hidden="true"></div>
-                <div class="d-flex flex-column flex-sm-row gap-2 mt-3">
-                  <button type="button" class="btn btn-lg nx-btn-download text-white flex-grow-1 rounded-3 fw-semibold" id="heroDownloadBtn">
-                    <i class="bi bi-download me-2"></i> Download
-                  </button>
-                  <button type="button" class="btn btn-lg btn-outline-secondary rounded-3 px-4" id="pasteUrlBtn" title="Paste from clipboard">
-                    <i class="bi bi-clipboard"></i>
-                  </button>
+              </div>
+            </div>
+
+            <!-- Result (hidden until /analyze succeeds) -->
+            <div id="previewResultSection" class="d-none">
+              <div class="nx-gradient-border mx-auto text-start" style="max-width: 56rem">
+                <div class="nx-glass-inner p-3 p-md-4 p-lg-5">
+                  <div id="apiErrorResult" class="alert alert-danger py-2 px-3 small mb-3 d-none" role="alert"></div>
+                  <div class="d-flex flex-column flex-md-row align-items-start justify-content-between gap-3 mb-3">
+                    <div>
+                      <h2 class="h4 fw-bold text-body-emphasis mb-1">Ready to download</h2>
+                      <p class="small text-body-secondary mb-0">Choose a format and save the file.</p>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-3" id="previewAnotherBtn">
+                      <i class="bi bi-arrow-left me-1"></i> Download another file
+                    </button>
+                  </div>
+                  <div class="row g-4 align-items-center">
+                    <div class="col-md-5">
+                      <div
+                        id="previewMediaShell"
+                        class="nx-preview-media rounded-4 border border-secondary-subtle shadow-sm position-relative overflow-hidden"
+                      >
+                        <img id="previewThumb" class="nx-preview-img d-none" alt="" crossorigin="anonymous" />
+                        <video
+                          id="previewVideo"
+                          class="nx-preview-video d-none"
+                          playsinline
+                          controls
+                          preload="metadata"
+                        ></video>
+                        <div id="previewThumbPh" class="nx-preview-ph d-flex align-items-center justify-content-center">
+                          <i class="bi bi-play-circle display-3 text-white opacity-75"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-7 text-md-start text-center">
+                      <span id="previewBadge" class="badge rounded-pill nx-glass border border-secondary-subtle mb-2">—</span>
+                      <h3 id="previewTitle" class="h5 fw-bold text-body-emphasis mb-2">—</h3>
+                      <p id="previewMeta" class="small text-body-secondary mb-3">—</p>
+                      <label class="form-label small text-body-secondary" for="qualitySelect">Available formats</label>
+                      <select id="qualitySelect" class="form-select form-select-lg mb-3 rounded-3 border-secondary-subtle bg-body-secondary">
+                        <option value="">—</option>
+                      </select>
+                      <button type="button" id="previewDownloadBtn" class="btn btn-lg nx-btn-download text-white rounded-3 w-100 w-md-auto px-5 fw-semibold position-relative" disabled>
+                        <span class="preview-dl-label d-inline-flex align-items-center gap-2">
+                          <i class="bi bi-download"></i> Download now
+                        </span>
+                        <span class="preview-dl-spinner d-none position-absolute top-50 start-50 translate-middle" aria-hidden="true">
+                          <span class="nx-spinner-inline nx-spinner-inline--light"></span>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <p class="small text-body-secondary mt-3 mb-0 text-center text-sm-start">
-                  <i class="bi bi-shield-check text-success me-1"></i>
-                  No account required · Encrypted session
-                </p>
               </div>
             </div>
           </div>
@@ -270,48 +326,6 @@
       </div>
     </section>
 
-    <!-- Preview card -->
-    <section id="preview" class="py-5 border-top border-secondary-subtle">
-      <div class="container">
-        <div class="text-center mb-5">
-          <h2 class="h3 fw-bold text-body-emphasis mb-2">Preview before you save</h2>
-          <p class="text-body-secondary mb-0">See metadata and choose quality like a native app.</p>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="nx-gradient-border">
-              <div class="nx-glass-inner p-4 p-md-5">
-                <div class="row g-4 align-items-center">
-                  <div class="col-md-5">
-                    <div class="ratio ratio-9x16 rounded-4 overflow-hidden nx-thumb-shimmer border border-secondary-subtle shadow">
-                      <div class="d-flex align-items-center justify-content-center bg-dark bg-opacity-25">
-                        <i class="bi bi-play-circle display-3 text-white opacity-75"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-7 text-md-start text-center">
-                    <span class="badge rounded-pill nx-glass border border-secondary-subtle mb-2">Sample</span>
-                    <h3 class="h5 fw-bold text-body-emphasis mb-2">Neon skyline loop — @creator</h3>
-                    <p class="small text-body-secondary mb-3">1080×1920 · 12s · MP4</p>
-                    <label class="form-label small text-body-secondary" for="qualitySelect">Quality</label>
-                    <select id="qualitySelect" class="form-select form-select-lg mb-3 rounded-3 border-secondary-subtle bg-body-secondary">
-                      <option>1080p HD</option>
-                      <option>720p</option>
-                      <option>480p</option>
-                      <option>Audio only</option>
-                    </select>
-                    <button type="button" class="btn btn-lg nx-btn-download text-white rounded-3 w-100 w-md-auto px-5 fw-semibold">
-                      <i class="bi bi-download me-2"></i> Download now
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Stats -->
     <section class="py-5">
       <div class="container">
@@ -414,6 +428,7 @@
           <div class="col-6 col-lg-2">
             <h4 class="small fw-bold text-body-emphasis text-uppercase mb-3">Product</h4>
             <ul class="list-unstyled small mb-0">
+              <li class="mb-2"><a href="#downloaderFlow" class="link-secondary text-decoration-none">Download</a></li>
               <li class="mb-2"><a href="#platforms" class="link-secondary text-decoration-none">Platforms</a></li>
               <li class="mb-2"><a href="#features" class="link-secondary text-decoration-none">Features</a></li>
               <li><a href="#faq" class="link-secondary text-decoration-none">FAQ</a></li>
@@ -450,6 +465,10 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <!-- FastAPI backend base URL (no trailing slash). Override per environment. -->
+    <script>
+      window.NEXDL_API_BASE = "http://127.0.0.1:8000";
+    </script>
     <script src="assets/index.js"></script>
   </body>
 </html>

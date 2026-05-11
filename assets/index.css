@@ -216,40 +216,59 @@ body {
   box-shadow: 0 16px 40px rgba(99, 102, 241, 0.12);
 }
 
-/* Fake loading overlay */
-.nx-loading-bar {
-  height: 3px;
-  background: linear-gradient(90deg, #a855f7, #3b82f6, #ec4899);
-  background-size: 200% 100%;
-  animation: nx-load-slide 1.2s ease-in-out infinite;
-  border-radius: 2px;
-  opacity: 0;
-  max-height: 0;
-  transition: opacity 0.2s, max-height 0.2s;
+/* Inline loader above URL field */
+.nx-input-line-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 1.5rem;
 }
 
-.nx-loading-bar.is-active {
-  opacity: 1;
-  max-height: 4px;
-  margin-top: 0.5rem;
-}
-
-@keyframes nx-load-slide {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 200% 50%;
-  }
-}
-
-.nx-spinner-ring {
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 3px solid rgba(168, 85, 247, 0.2);
+.nx-spinner-inline {
+  display: inline-block;
+  width: 1.35rem;
+  height: 1.35rem;
+  border: 2px solid rgba(168, 85, 247, 0.35);
   border-top-color: #a855f7;
   border-radius: 50%;
-  animation: nx-spin 0.7s linear infinite;
+  animation: nx-spin 0.65s linear infinite;
+  vertical-align: middle;
+}
+
+.nx-spinner-inline--light {
+  border-color: rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+}
+
+/* Preview media (any aspect ratio) */
+.nx-preview-media {
+  min-height: 220px;
+  max-height: min(56vh, 520px);
+  background: rgba(2, 6, 23, 0.65);
+}
+
+.nx-preview-ph {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.85));
+}
+
+.nx-preview-img,
+.nx-preview-video {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: min(56vh, 520px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.nx-preview-video {
+  background: #000;
 }
 
 @keyframes nx-spin {
