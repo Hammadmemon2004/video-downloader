@@ -65,9 +65,6 @@
       var j = await res.clone().json();
       var d = j.detail && typeof j.detail === "object" ? j.detail : j;
       var msg = (d && d.message) || (j && j.message) || "";
-      if (d && d.details && d.details.server_hint) {
-        msg = (msg ? msg + " " : "") + d.details.server_hint;
-      }
       if (msg) return msg;
     } catch (e) {
       /* ignore */

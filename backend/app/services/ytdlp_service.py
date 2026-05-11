@@ -33,20 +33,30 @@ def _map_ytdlp_exception(exc: BaseException, url: str) -> AppError:
     msg = str(exc).lower()
     raw = str(exc)
 
-    if "private" in msg or "login required" in msg or "sign in" in msg or "auth" in msg:
-        details: dict[str, Any] = {"hint": raw[:400]}
-        if "sign in" in msg or "bot" in msg:
-            details["server_hint"] = (
-                "YouTube is asking for a logged-in session. On the machine running the API, set "
-                "NEXDL_YTDLP_COOKIEFILE to a cookies.txt file exported while signed into YouTube, "
-                "or set NEXDL_YTDLP_COOKIES_FROM_BROWSER (e.g. chrome or edge:Default). "
-                f"See {_COOKIES_FAQ}."
-            )
+    # YouTube "confirm you're not a bot" — not bypassable without cookies; never expose raw
+    # yt-dlp text or server env vars to API clients (end users see only `message`).
+    is_bot_gate = ("sign in" in msg and "bot" in msg) or "not a bot" in msg
+    if is_bot_gate:
+        logger.warning(
+            "YouTube bot / sign-in gate. Configure NEXDL_YTDLP_COOKIEFILE or "
+            "NEXDL_YTDLP_COOKIES_FROM_BROWSER on the API host. FAQ: %s — raw: %s",
+            _COOKIES_FAQ,
+            raw[:800],
+        )
         return AppError(
             ErrorCode.PRIVATE_CONTENT,
-            "This content is private or requires authentication.",
+            "This video could not be loaded right now. Please try again later.",
             status_code=403,
-            details=details,
+            details={"reason": "youtube_bot_check"},
+        )
+
+    if "private" in msg or "login required" in msg or "sign in" in msg or "auth" in msg:
+        logger.warning("yt-dlp access restriction: %s", raw[:800])
+        return AppError(
+            ErrorCode.PRIVATE_CONTENT,
+            "This content is private, restricted, or needs sign-in.",
+            status_code=403,
+            details={"reason": "access_restricted"},
         )
     if "unsupported url" in msg or "no suitable extractors" in msg:
         return AppError(
