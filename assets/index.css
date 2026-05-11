@@ -126,6 +126,34 @@ body {
   background-clip: text;
 }
 
+/* Hero / preview pills — readable on light glass */
+.nx-badge-promo,
+.nx-badge-platform {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #e2e8f0;
+}
+
+.nx-badge-promo .nx-badge-promo-icon {
+  color: #c4b5fd;
+}
+
+[data-bs-theme="light"] .nx-badge-promo,
+[data-bs-theme="light"] .nx-badge-platform {
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.2) !important;
+}
+
+[data-bs-theme="light"] .nx-badge-promo .nx-badge-promo-icon {
+  color: #6d28d9 !important;
+  -webkit-text-fill-color: #6d28d9;
+}
+
+[data-bs-theme="light"] .nx-badge-platform {
+  font-weight: 700;
+}
+
 /* Navbar glass */
 .nx-navbar {
   background: var(--nx-surface) !important;
@@ -214,14 +242,6 @@ body {
 
 [data-bs-theme="light"] .nx-card-hover:hover {
   box-shadow: 0 16px 40px rgba(99, 102, 241, 0.12);
-}
-
-/* Inline loader above URL field */
-.nx-input-line-loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 1.5rem;
 }
 
 .nx-spinner-inline {

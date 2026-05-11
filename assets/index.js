@@ -87,12 +87,18 @@
     return max;
   }
 
-  function setHeroAnalyzing(on) {
-    var line = document.getElementById("inputLineLoader");
-    if (line) {
-      line.classList.toggle("d-none", !on);
-      line.setAttribute("aria-hidden", on ? "false" : "true");
+  function setUrlFieldLocked(locked) {
+    var input = document.getElementById("mediaUrl");
+    var paste = document.getElementById("pasteUrlBtn");
+    if (input) {
+      input.disabled = locked;
+      input.setAttribute("aria-busy", locked ? "true" : "false");
     }
+    if (paste) paste.disabled = locked;
+  }
+
+  function setHeroAnalyzing(on) {
+    setUrlFieldLocked(on);
     var btn = document.getElementById("heroDownloadBtn");
     if (btn) {
       btn.disabled = on;
@@ -125,6 +131,7 @@
     document.getElementById("heroPasteSection")?.classList.remove("d-none");
     document.getElementById("previewResultSection")?.classList.add("d-none");
     hideAllErrors();
+    setUrlFieldLocked(false);
   }
 
   function showResultLayout() {
