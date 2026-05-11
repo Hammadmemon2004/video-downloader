@@ -76,6 +76,8 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 | `NEXDL_TEMP_DIR` | Temp download directory |
 | `NEXDL_CORS_ALLOW_ALL` | `true` / `false` — when `false`, uses restricted `NEXDL_CORS_ORIGINS` |
 | `NEXDL_SOCKET_TIMEOUT` | yt-dlp socket timeout (seconds) |
+| `NEXDL_YTDLP_COOKIEFILE` | Path to Netscape `cookies.txt` while logged into YouTube (stops many “sign in / bot” errors) |
+| `NEXDL_YTDLP_COOKIES_FROM_BROWSER` | e.g. `chrome`, `edge:Default`, or `firefox::container` — same user/machine as the API |
 
 ## Endpoints
 
@@ -89,5 +91,5 @@ YouTube, Instagram, TikTok, Facebook, Pinterest, X/Twitter — other hosts retur
 
 ## Notes
 
-- Many networks require cookies or logins for private or age-gated media; pass cookies via yt-dlp config if you extend this service.
+- YouTube often requires cookies (bot / age checks). Set `NEXDL_YTDLP_COOKIEFILE` or `NEXDL_YTDLP_COOKIES_FROM_BROWSER` as documented above.
 - Set `NEXDL_CORS_ALLOW_ALL=false` in production and list explicit origins.

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import glob
+import logging
 import os
 import re
 import shutil
@@ -17,6 +18,12 @@ from app.utils.errors import AppError, ErrorCode
 from app.utils.platform import Platform
 from app.utils.security import safe_filename_fragment, unique_temp_basename
 
+logger = logging.getLogger(__name__)
+
+_COOKIES_FAQ = (
+    "https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp"
+)
+
 
 def _ffmpeg_exists() -> bool:
     return shutil.which("ffmpeg") is not None
@@ -27,11 +34,19 @@ def _map_ytdlp_exception(exc: BaseException, url: str) -> AppError:
     raw = str(exc)
 
     if "private" in msg or "login required" in msg or "sign in" in msg or "auth" in msg:
+        details: dict[str, Any] = {"hint": raw[:400]}
+        if "sign in" in msg or "bot" in msg:
+            details["server_hint"] = (
+                "YouTube is asking for a logged-in session. On the machine running the API, set "
+                "NEXDL_YTDLP_COOKIEFILE to a cookies.txt file exported while signed into YouTube, "
+                "or set NEXDL_YTDLP_COOKIES_FROM_BROWSER (e.g. chrome or edge:Default). "
+                f"See {_COOKIES_FAQ}."
+            )
         return AppError(
             ErrorCode.PRIVATE_CONTENT,
             "This content is private or requires authentication.",
             status_code=403,
-            details={"hint": raw[:300]},
+            details=details,
         )
     if "unsupported url" in msg or "no suitable extractors" in msg:
         return AppError(
@@ -55,6 +70,51 @@ def _map_ytdlp_exception(exc: BaseException, url: str) -> AppError:
     )
 
 
+def _cookies_from_browser_tuple(spec: str) -> tuple[str, ...]:
+    """
+    Map env string to yt-dlp cookiesfrombrowser tuple.
+    Supports "browser", "browser:profile", and "browser::container" (Firefox multi-account).
+    """
+    s = spec.strip()
+    if not s:
+        raise ValueError("empty browser spec")
+    container: str | None = None
+    if "::" in s:
+        main, rest = s.split("::", 1)
+        s, container = main.strip(), rest.strip() or None
+        if not s:
+            raise ValueError("invalid browser spec")
+    if ":" in s:
+        browser, profile = s.split(":", 1)
+        browser, profile = browser.strip(), profile.strip()
+        if not browser:
+            raise ValueError("invalid browser spec")
+        tup: tuple[str, ...] = (browser, profile) if profile else (browser,)
+    else:
+        tup = (s,)
+    if container:
+        return (*tup, container)
+    return tup
+
+
+def _apply_ytdlp_cookie_options(opts: dict[str, Any], settings: Settings) -> None:
+    """Prefer an explicit cookies file over reading the local browser."""
+    cf = (settings.ytdlp_cookiefile or "").strip()
+    if cf:
+        path = os.path.normpath(cf)
+        if os.path.isfile(path):
+            opts["cookiefile"] = path
+            return
+        logger.warning("NEXDL_YTDLP_COOKIEFILE is set but not a readable file: %s", path)
+
+    cfb = (settings.ytdlp_cookies_from_browser or "").strip()
+    if cfb:
+        try:
+            opts["cookiesfrombrowser"] = _cookies_from_browser_tuple(cfb)
+        except ValueError:
+            logger.warning("Invalid NEXDL_YTDLP_COOKIES_FROM_BROWSER: %r", cfb)
+
+
 def _base_ydl_opts(settings: Settings, quiet: bool = True) -> dict[str, Any]:
     opts: dict[str, Any] = {
         "quiet": quiet,
@@ -68,6 +128,7 @@ def _base_ydl_opts(settings: Settings, quiet: bool = True) -> dict[str, Any]:
     }
     if settings.temp_dir:
         opts["tmpdir"] = settings.temp_dir
+    _apply_ytdlp_cookie_options(opts, settings)
     return opts
 
 

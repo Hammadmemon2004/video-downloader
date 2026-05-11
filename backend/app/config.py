@@ -22,6 +22,15 @@ class Settings(BaseSettings):
     # Temp directory (empty = system default)
     temp_dir: str | None = None
 
+    # YouTube / bot checks: Netscape cookies.txt path (export from browser; see yt-dlp FAQ).
+    # If set and the file exists, it is passed to yt-dlp as cookiefile.
+    ytdlp_cookiefile: str | None = None
+
+    # Alternative: read cookies from a local browser profile (same machine/user as the API).
+    # Examples: "chrome", "edge", "firefox", or "chrome:Default" for a named profile.
+    # Ignored when ytdlp_cookiefile points to an existing file.
+    ytdlp_cookies_from_browser: str | None = None
+
     # CORS — include null for file:// HTML, localhost for dev
     cors_origins: list[str] = [
         "http://localhost",
